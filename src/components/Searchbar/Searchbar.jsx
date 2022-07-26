@@ -2,6 +2,8 @@ import { Component } from 'react';
 import { VscSearch } from 'react-icons/vsc';
 import { toast } from 'react-toastify';
 
+import { Header, Button, Input, StyledForm } from './Searchbar.styled';
+
 export default class Searchbar extends Component {
   state = {
     value: '',
@@ -18,7 +20,7 @@ export default class Searchbar extends Component {
       toast.info('I didn`t catch what you are looking for');
       return;
     }
-    this.props.onSubmit(this.state);
+    this.props.onSubmit(this.state.value);
     this.resetForm();
   };
 
@@ -28,19 +30,20 @@ export default class Searchbar extends Component {
 
   render() {
     return (
-      <header>
-        <form onSubmit={this.handleSubmitForm}>
-          <button type="submit">
-            <VscSearch size={13} /> Search
-          </button>
+      <Header>
+        <StyledForm onSubmit={this.handleSubmitForm}>
+          <Button type="submit">
+            <VscSearch size={13} />
+          </Button>
 
-          <input
+          <Input
             type="text"
+            placeholder="Make a wish"
             onChange={this.handleInputChange}
             value={this.state.value}
           />
-        </form>
-      </header>
+        </StyledForm>
+      </Header>
     );
   }
 }
