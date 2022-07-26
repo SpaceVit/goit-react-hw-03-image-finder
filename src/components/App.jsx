@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Title, TitleBox } from './App.styled';
+import { Title, TitleBox, BigPick } from './App.styled';
 
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
@@ -106,7 +106,9 @@ export default class App extends Component {
         )}
         {showLoadMore && <Button onLoadMore={this.loadMore} />}
         {openModal && (
-          <Modal togleModal={this.togleModal} src={largeImageURL} alt={tag} />
+          <Modal togleModal={this.togleModal}>
+            <BigPick src={largeImageURL} alt={tag} />
+          </Modal>
         )}
       </div>
     );

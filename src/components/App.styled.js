@@ -10,3 +10,7 @@ export const Title = styled.p`
   font-size: 26px;
   font-weight: bold;
 `;
+
+export const BigPick = styled.img`
+  width: 900px;
+`;

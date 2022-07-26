@@ -1,5 +1,9 @@
 import { Component } from 'react';
-import { Backdrop, StyledModal, BigPick } from './Modal.styled';
+import { createPortal } from 'react-dom';
+import { Backdrop, StyledModal } from './Modal.styled';
+import PropTypes from 'prop-types';
+
+const modalRoot = document.querySelector('#modal-root');
 
 export default class Modal extends Component {
   componentDidMount() {
@@ -23,14 +27,15 @@ export default class Modal extends Component {
   };
 
   render() {
-    const { alt, src } = this.props;
-
-    return (
+    return createPortal(
       <Backdrop onClick={this.handleBackdropClick}>
-        <StyledModal>
-          <BigPick src={src} alt={alt} />
-        </StyledModal>
-      </Backdrop>
+        <StyledModal>{this.props.children}</StyledModal>
+      </Backdrop>,
+      modalRoot
     );
   }
 }
+
+Modal.propTypes = {
+  children: PropTypes.element.isRequired,
+};
